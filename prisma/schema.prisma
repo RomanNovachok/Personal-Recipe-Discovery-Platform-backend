@@ -30,9 +30,10 @@ model Recipe {
 model Rating {
   id       String  @id @default(uuid())
   value    Int
-  recipe   Recipe  @relation(fields: [recipeId], references: [id])
+  recipe   Recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
   recipeId String
   user     User    @relation(fields: [userId], references: [id])
   userId   String
+
   @@unique([userId, recipeId])
 }
